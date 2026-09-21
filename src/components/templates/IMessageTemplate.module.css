@@ -206,33 +206,6 @@
   border-bottom-left-radius: 4px;
 }
 
-.tail {
-  position: absolute;
-  z-index: 0;
-  width: 11px;
-  height: 11px;
-  background-color: var(--bubble-bg);
-  transform: rotate(45deg);
-}
-
-.row[data-self='true'] .tail {
-  right: -5px;
-  bottom: -6px;
-}
-
-.row[data-self='false'] .tail {
-  left: -5px;
-  bottom: -6px;
-}
-
-.row[data-self='true']:not([data-last='true']) .tail {
-  display: none;
-}
-
-.row[data-self='false']:not([data-last='true']) .tail {
-  display: none;
-}
-
 .reaction {
   position: absolute;
   top: -14px;
@@ -250,11 +223,7 @@
   z-index: 2;
 }
 
-.row[data-self='true'] .reaction {
-  left: -14px;
-}
-
-.row[data-self='false'] .reaction {
+.row .reaction {
   right: -14px;
 }
 

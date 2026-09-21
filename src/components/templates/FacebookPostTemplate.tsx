@@ -10,11 +10,11 @@ import {
   FaMagnifyingGlass,
   FaPlay,
   FaStore,
+  FaThumbsUp,
   FaUserGroup,
   IoChatbubbleOutline,
   IoGlobeOutline,
   IoShareOutline,
-  IoThumbsUp,
   RiVerifiedBadgeFill,
 } from './shared/icons';
 import { useTemplateData } from './shared/useTemplateData';
@@ -45,16 +45,7 @@ function FacebookPostView({ config }: { config: ChatConfig }) {
       data-mode={dark ? 'dark' : 'light'}
       style={cssVars({ '--template-font': FONT })}
     >
-      <div className={styles.appbar}>
-        <span className={styles.brand}>
-          <FaFacebook size={28} color="#1877F2" />
-          <span className={styles.brandText}>facebook</span>
-        </span>
-        <span className={styles.appbarIcons}>
-          <FaMagnifyingGlass size={18} />
-          <FaBell size={18} />
-        </span>
-      </div>
+     
 
       <div className={styles.content}>
       <div className={styles.card}>
@@ -97,7 +88,7 @@ function FacebookPostView({ config }: { config: ChatConfig }) {
 
         <div className={styles.actions}>
           <span className={styles.action}>
-            <IoThumbsUp size={15} />
+            <FaThumbsUp size={15} />
             <span>Like</span>
           </span>
           <span className={styles.action}>
@@ -125,13 +116,7 @@ function FacebookPostView({ config }: { config: ChatConfig }) {
       </div>
       </div>
 
-      <nav className={styles.bottomNav} aria-label="Facebook navigation">
-        <span className={styles.navItem} data-active="true"><FaHouse size={19} /></span>
-        <span className={styles.navItem}><FaUserGroup size={19} /></span>
-        <span className={styles.navItem}><FaPlay size={19} /></span>
-        <span className={styles.navItem}><FaStore size={19} /></span>
-        <span className={styles.navItem}><FaBars size={19} /></span>
-      </nav>
+      
     </div>
   );
 }

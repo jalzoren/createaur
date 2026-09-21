@@ -15,7 +15,7 @@ function IMessageView({ config }: { config: ChatConfig }) {
   const contactsById = new Map(config.contacts.map((c) => [c.id, c]));
 
   const statusColor = dark ? 'rgba(255,255,255,0.92)' : 'rgba(0,0,0,0.92)';
-  const incomingColor = dark ? '#26252A' : '#E5E5EA';
+  const incomingColor = '#8E8E93';
 
   const rootVars = cssVars({
     '--template-font': TEMPLATE_FONT,
@@ -193,7 +193,6 @@ function MessageGroupView({
                   {item.message.reaction.emoji}
                 </span>
               )}
-              <span className={styles.tail} style={cssVars({ '--bubble-bg': bubble })} aria-hidden="true" />
             </div>
           </div>
         );

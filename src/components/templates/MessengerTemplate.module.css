@@ -223,12 +223,8 @@
   z-index: 2;
 }
 
-.row[data-self='true'] .reaction {
+.row .reaction {
   right: 2px;
-}
-
-.row[data-self='false'] .reaction {
-  left: 0;
 }
 
 .receipt {

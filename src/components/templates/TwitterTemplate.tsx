@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import type { ChatConfig } from '../../types';
+import type { ChatConfig, Contact } from '../../types';
 import { cssVars } from '../../lib/cn';
 import { formatTime12 } from '../../lib/time';
 import type { MessageGroup } from '../../lib/groupMessages';
@@ -7,11 +7,12 @@ import { Avatar } from './shared/Avatar';
 import {
   Battery,
   FaChevronLeft,
-  FaEllipsis,
   FaFaceSmile,
   FaImage,
+  FaMagnifyingGlass,
   FaPaperPlane,
   FaVideo,
+  IoInformationCircleOutline,
   RiVerifiedBadgeFill,
   SignalBars,
 } from './shared/icons';
@@ -26,6 +27,7 @@ function TwitterView({ config }: { config: ChatConfig }) {
   const dark = config.darkMode;
   const firstOther = data.firstOther;
   const showProfile = !data.isGroup;
+  const contactsById = new Map(config.contacts.map((c) => [c.id, c]));
 
   const rootVars = cssVars({
     '--template-font': FONT,
@@ -69,8 +71,9 @@ function TwitterView({ config }: { config: ChatConfig }) {
           </span>
         </span>
         <span className={styles.navButtons}>
-          <FaVideo size={19} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
-          <FaEllipsis size={19} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
+          <FaMagnifyingGlass size={20} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
+          <FaVideo size={20} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
+          <IoInformationCircleOutline size={20} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
         </span>
       </div>
 
@@ -83,6 +86,7 @@ function TwitterView({ config }: { config: ChatConfig }) {
           </span>
           <span className={styles.profileHandle}>{firstOther.handle}</span>
           <span className={styles.profileJoined}>Joined September 2024</span>
+          <span className={styles.messageBtn}>Message</span>
         </div>
       )}
 
@@ -92,6 +96,8 @@ function TwitterView({ config }: { config: ChatConfig }) {
             key={groupKey(group)}
             group={group}
             config={config}
+            contactsById={contactsById}
+            isGroup={data.isGroup}
             isLastSelfGroup={group.messages[group.messages.length - 1]?.message.id === data.lastSelfMessageId}
           />
         ))}
@@ -99,11 +105,15 @@ function TwitterView({ config }: { config: ChatConfig }) {
       </div>
 
       <div className={styles.inputBar}>
-        <FaImage size={20} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
-        <span className={styles.gifBadge}>GIF</span>
-        <FaFaceSmile size={20} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
-        <span className={styles.shareField}>Start a new message</span>
-        <FaPaperPlane size={20} color={dark ? '#E7E9EA' : '#0F1419'} aria-hidden="true" />
+        <span className={styles.pill}>
+          <FaImage size={18} />
+          <span className={styles.gifBadge}>GIF</span>
+          <FaFaceSmile size={18} />
+          <span className={styles.shareField}>Start a new message</span>
+          <span className={styles.send}>
+            <FaPaperPlane size={16} />
+          </span>
+        </span>
       </div>
     </div>
   );
@@ -138,13 +148,18 @@ function groupKey(group: MessageGroup): string {
 function GroupRow({
   group,
   config,
+  contactsById,
+  isGroup,
   isLastSelfGroup,
 }: {
   group: MessageGroup;
   config: ChatConfig;
+  contactsById: Map<string, Contact>;
+  isGroup: boolean;
   isLastSelfGroup: boolean;
 }) {
   const self = group.isSelf;
+  const contact = contactsById.get(group.contactId);
   const lastSelf = group.messages[group.messages.length - 1]?.message;
   const lastTimestamp = resolveGroupTime(group, config);
 
@@ -157,29 +172,48 @@ function GroupRow({
           data-self={self ? 'true' : undefined}
           data-last={item.isLast ? 'true' : undefined}
         >
-          <span
-            className={styles.bubble}
-            dir="auto"
-            data-self={self ? 'true' : undefined}
-            data-last={item.isLast ? 'true' : undefined}
-          >
-            {item.message.text}
-          </span>
-          {item.message.reaction && (
-            <span className={styles.reaction} data-self={self ? 'true' : undefined}>
-              {item.message.reaction.emoji}
-            </span>
+          {!self && item.isLast && (
+            <Avatar
+              name={contact?.name ?? 'User'}
+              seed={contact?.id ?? ''}
+              avatarUrl={contact?.avatarUrl}
+              size={28}
+            />
           )}
+          <span className={styles.bubbleCol} data-self={self ? 'true' : undefined}>
+            {!self && isGroup && (
+              <span className={styles.senderName}>{contact?.name ?? 'User'}</span>
+            )}
+            <span
+              className={styles.bubbleRow}
+              data-self={self ? 'true' : undefined}
+              data-last={item.isLast ? 'true' : undefined}
+            >
+              <span
+                className={styles.bubble}
+                dir="auto"
+                data-self={self ? 'true' : undefined}
+                data-last={item.isLast ? 'true' : undefined}
+              >
+                {item.message.text}
+              </span>
+              {item.message.reaction && (
+                <span className={styles.reaction} data-self={self ? 'true' : undefined}>
+                  {item.message.reaction.emoji}
+                </span>
+              )}
+            </span>
+          </span>
         </div>
       ))}
-      {config.showTimestamp && self && (
+      {config.showTimestamp && (
         <span className={styles.timestamp} data-self={self ? 'true' : undefined}>
-          {lastTimestamp}
+          · {lastTimestamp}
         </span>
       )}
-      {self && isLastSelfGroup && (
-        <span className={styles.timestamp} data-self={self ? 'true' : undefined}>
-          {lastSelf?.isRead ? 'Seen' : ''}
+      {self && isLastSelfGroup && lastSelf?.isRead && (
+        <span className={styles.timestamp} data-self="true">
+          Seen
         </span>
       )}
     </div>

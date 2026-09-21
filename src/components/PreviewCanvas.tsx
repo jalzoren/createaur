@@ -7,6 +7,8 @@ import { TemplateErrorBoundary } from './PreviewError';
 import { TemplateRenderer } from './templates';
 import styles from './PreviewCanvas.module.css';
 
+const MAX_SCALE = 0.9;
+
 /**
  * Renders the active template at 390px natural width, scaled with a CSS
  * transform to always fit its container (width and height). Exporting still
@@ -38,7 +40,7 @@ export function PreviewCanvas() {
     if (availW <= 0 || availH <= 0) return 1;
     const widthScale = Math.min(1, availW / 390);
     const heightScale = Math.min(1, availH / contentH);
-    return Math.min(widthScale, heightScale);
+    return Math.min(widthScale, heightScale, MAX_SCALE);
   }, [cw, ch, contentH]);
 
   const layoutW = 390 * scale;

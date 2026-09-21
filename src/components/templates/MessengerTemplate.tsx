@@ -86,14 +86,7 @@ function MessengerView({ config }: { config: ChatConfig }) {
         {data.groups.length === 0 && <div className={styles.empty} aria-hidden="true" />}
       </div>
 
-      <div className={styles.inputBar}>
-        <span className={styles.circle}>
-          <FaCamera size={20} aria-hidden="true" />
-        </span>
-        <span className={styles.field}>Aa</span>
-        <FaFaceSmile size={24} color="#0084FF" aria-hidden="true" />
-        <FaThumbsUp size={22} color="#0084FF" aria-hidden="true" />
-      </div>
+    
     </div>
   );
 }

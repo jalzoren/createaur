@@ -1,0 +1,63 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+/* bigger hit target on touch */
+.root::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+}
+
+.root[data-size='sm'] {
+  width: 32px;
+  height: 32px;
+}
+
+.root[data-size='md'] {
+  width: 36px;
+  height: 36px;
+}
+
+.root[data-variant='ghost']:hover:not(:disabled) {
+  background-color: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.root[data-variant='outline'] {
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+}
+
+.root[data-variant='outline']:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.root[data-variant='danger']:hover:not(:disabled) {
+  background-color: var(--bg-subtle);
+  color: var(--danger);
+}
+
+.root:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.icon {
+  display: inline-flex;
+  line-height: 0;
+  pointer-events: none;
+}

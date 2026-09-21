@@ -1,0 +1,45 @@
+.root {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  padding: 6px 8px;
+  border-radius: var(--radius-md);
+}
+
+.wordmark:hover {
+  background-color: var(--bg-subtle);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copyLabel {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .copyLabel {
+    display: inline;
+  }
+}

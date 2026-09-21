@@ -1,0 +1,34 @@
+@import '@fontsource-variable/inter';
+@import './tokens.css';
+@import './reset.css';
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  font-variation-settings: 'wght' 400;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* Thin scrollbars for editor surfaces. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* Reduced motion: kill transforms/transitions/animations except color. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

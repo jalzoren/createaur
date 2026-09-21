@@ -1,0 +1,76 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  background-color: var(--bg-panel);
+}
+
+.topLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.senderSelect {
+  flex: 1;
+  min-width: 0;
+  font-weight: var(--weight-medium);
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.iconAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+}
+
+.iconAction:hover:not(:disabled) {
+  background-color: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.iconAction[data-danger='true']:hover {
+  color: var(--danger);
+}
+
+.iconAction:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.bottomLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeInput {
+  width: 72px;
+  height: 28px;
+  font-size: var(--text-xs);
+  padding: 0 6px;
+}
+
+.timePlaceholder {
+  color: var(--text-muted);
+}

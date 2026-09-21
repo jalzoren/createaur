@@ -1,0 +1,113 @@
+/*
+  Design tokens for CreateAUR editor chrome.
+
+  Editor styling reads these tokens ONLY. Components never hard-code
+  colors/sizes for editor UI.
+
+  Responsive breakpoints (mirrored in src/hooks/useMediaQuery.ts):
+    - tablet: min-width: 640px
+    - desktop: min-width: 1024px
+*/
+
+:root {
+  /* Colors — light */
+  --bg-app: #fafafa;
+  --bg-panel: #ffffff;
+  --bg-subtle: #f4f4f5;
+  --bg-active: color-mix(in srgb, var(--accent) 12%, transparent);
+  --border-default: #e4e4e7;
+  --border-strong: #d4d4d8;
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+  --accent: #3b82f6;
+  --accent-solid: #2563eb;
+  --accent-solid-hover: #1d4ed8;
+  --danger: #dc2626;
+  --danger-solid: #dc2626;
+  --dot: rgba(212, 212, 216, 0.4);
+
+  color-scheme: light;
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --shadow-popover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-modal: 0 20px 48px rgba(0, 0, 0, 0.24);
+  --shadow-preview: 0 24px 64px rgba(0, 0, 0, 0.12);
+
+  /* Type */
+  --font-sans: 'Inter Variable', Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, 'Roboto Mono', monospace;
+  --text-xs: 12px;
+  --lh-xs: 16px;
+  --text-sm: 14px;
+  --lh-sm: 20px;
+  --text-base: 16px;
+  --lh-base: 24px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --line-md: 1.5;
+  --line-lg: 1.7;
+
+  /* Spacing (4px scale) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-full: 999px;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-med: 200ms;
+  --duration-normal: 280ms;
+  --ease-out: ease-out;
+
+  /* Layout */
+  --header-height: 56px;
+  --sidebar-width: 380px;
+
+  /* Z-index scale */
+  --z-header: 10;
+  --z-sheet: 20;
+  --z-popover: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+[data-theme='dark'] {
+  --bg-app: #09090b;
+  --bg-panel: #18181b;
+  --bg-subtle: rgba(39, 39, 42, 0.6);
+  --border-default: #27272a;
+  --border-strong: #3f3f46;
+  --text-primary: #fafafa;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --accent: #3b82f6;
+  --accent-solid: #2563eb;
+  --accent-solid-hover: #1d4ed8;
+  --danger: #f87171;
+  --danger-solid: #dc2626;
+  --dot: rgba(39, 39, 42, 0.6);
+
+  color-scheme: dark;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-popover: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-modal: 0 20px 48px rgba(0, 0, 0, 0.5);
+  --shadow-preview: 0 24px 64px rgba(0, 0, 0, 0.5);
+}

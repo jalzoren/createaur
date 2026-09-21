@@ -1,0 +1,240 @@
+/* X (Twitter) 3rd-person posted-tweet view. Scope everything; never read editor tokens. */
+.root {
+  --template-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Roboto,
+    'Noto Sans', sans-serif;
+  --post-bg: #15202b;
+  --post-text: #e7e9ea;
+  --post-muted: #8b98a5;
+  --post-border: #2f3336;
+  --post-hover: rgba(255, 255, 255, 0.08);
+  --post-accent: #1d9bf0;
+
+  width: 390px;
+  min-height: 844px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--template-font);
+  background-color: var(--post-bg);
+  color: var(--post-text);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.root[data-xtheme='light'] {
+  --post-bg: #ffffff;
+  --post-text: #0f1419;
+  --post-muted: #536471;
+  --post-border: #eff3f4;
+  --post-hover: rgba(15, 20, 25, 0.08);
+}
+
+.root[data-xtheme='dark'] {
+  --post-bg: #000000;
+  --post-text: #e7e9ea;
+  --post-muted: #71767b;
+  --post-border: #2f3336;
+  --post-hover: rgba(255, 255, 255, 0.08);
+}
+
+.topbar {
+  flex: none;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--post-border);
+}
+
+.topbarSide {
+  display: inline-flex;
+  min-width: 28px;
+  font-size: 18px;
+  color: var(--post-muted);
+}
+
+.topbarSide:last-child {
+  justify-content: flex-end;
+}
+
+.topbarTitle {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.tabs {
+  flex: none;
+  height: 53px;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--post-border);
+}
+
+.tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--post-muted);
+  position: relative;
+}
+
+.tab[data-active='true'] {
+  color: var(--post-text);
+  font-weight: 700;
+}
+
+.tab[data-active='true']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 53px;
+  height: 4px;
+  border-radius: 999px;
+  background-color: var(--post-accent, #1d9bf0);
+}
+
+.card {
+  flex: none;
+  padding: 6px 16px 14px;
+  border-bottom: 1px solid var(--post-border);
+}
+
+.replies {
+  display: flex;
+  flex-direction: column;
+}
+
+.replyCard {
+  flex: none;
+  position: relative;
+  padding: 6px 16px 12px calc(8px + var(--reply-level, 1) * 26px);
+  border-bottom: 1px solid var(--post-border);
+}
+
+.replyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--reply-level, 1) * 26px + 1px);
+  width: 2px;
+  border-radius: 2px;
+  background-color: var(--post-accent);
+  opacity: 0.6;
+}
+
+.replyTo {
+  display: block;
+  margin: 0 0 10px 50px;
+  font-size: 13px;
+  color: var(--post-muted);
+}
+
+.replyToLink {
+  color: var(--post-accent);
+  font-weight: 500;
+}
+
+.author {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.authorMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.authorName {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--post-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.authorHandle {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--post-muted);
+}
+
+.timeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--post-muted);
+}
+
+.body {
+  padding: 12px 0 4px 50px;
+}
+
+.tweetText {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.36;
+  color: var(--post-text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.placeholder {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.36;
+  color: var(--post-muted);
+}
+
+.metrics {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--post-border);
+}
+
+.metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--post-muted);
+}
+
+.metricValue {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.metricPair {
+  display: inline-flex;
+  gap: 16px;
+  margin-left: auto;
+  color: var(--post-muted);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--post-muted);
+}

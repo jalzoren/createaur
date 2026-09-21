@@ -1,0 +1,276 @@
+/* X (Twitter) template. Scope everything; never read editor tokens. */
+.root {
+  --template-font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Segoe UI', Roboto, 'Inter Variable', Inter, sans-serif;
+  --nav-bg: #ffffff;
+  --hairline: rgba(0, 0, 0, 0.08);
+  --bubble-in: #eff3f4;
+  --bubble-out: #1d9bf0;
+  --bubble-in-text: #0f1419;
+  --bubble-out-text: #ffffff;
+  --author: #0f1419;
+  --muted: #71767b;
+
+  width: 390px;
+  min-height: 844px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--template-font);
+  color: var(--bubble-in-text);
+  background: var(--wallpaper);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.root[data-mode='dark'] {
+  --nav-bg: #000000;
+  --hairline: rgba(255, 255, 255, 0.12);
+  --bubble-in: #2f3336;
+  --bubble-in-text: #ffffff;
+  --author: #ffffff;
+}
+
+.nav {
+  flex: none;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.navProfile {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navButtons {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navCopy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.navNameRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navName {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--author);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navHandle {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.profile {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 0 16px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.profileNameRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.profileName {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--author);
+}
+
+.profileHandle {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.profileJoined {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px 0 16px;
+}
+
+.empty {
+  flex: 1;
+}
+
+.groupBlock {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 0;
+}
+
+.groupBlock + .groupBlock {
+  margin-top: 6px;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5px 16px;
+}
+
+.row[data-self='true'] {
+  justify-content: flex-end;
+}
+
+.row[data-self='false'] {
+  justify-content: flex-start;
+}
+
+.bubble {
+  max-width: 70%;
+  min-height: 20px;
+  padding: 12px 16px;
+  border-radius: 22px;
+  background-color: var(--bubble-in);
+  color: var(--bubble-in-text);
+  font-size: 15px;
+  line-height: 1.32;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  position: relative;
+  z-index: 1;
+}
+
+.bubble[data-self='true'] {
+  background-color: var(--bubble-out);
+  color: var(--bubble-out-text);
+}
+
+.row[data-self='true'][data-last='true'] .bubble {
+  border-bottom-right-radius: 4px;
+}
+
+.row[data-self='false'][data-last='true'] .bubble {
+  border-bottom-left-radius: 4px;
+}
+
+.timestamp {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 4px 20px 0;
+  margin-top: 2px;
+}
+
+.timestamp[data-self='true'] {
+  align-self: flex-end;
+}
+
+.timestamp[data-self='false'] {
+  align-self: flex-start;
+}
+
+.reaction {
+  position: absolute;
+  bottom: -12px;
+  height: 20px;
+  min-width: 30px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background-color: #16181c;
+  border: 1px solid #2f3336;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 1;
+  z-index: 2;
+}
+
+.row[data-self='true'] .reaction {
+  right: 24px;
+}
+
+.row[data-self='false'] .reaction {
+  left: 24px;
+}
+
+.inputBar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background-color: var(--nav-bg);
+  border-top: 1px solid var(--hairline);
+}
+
+.gifBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--nav-bg);
+  background-color: var(--author);
+  padding: 2px 4px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.shareField {
+  flex: 1;
+  height: 36px;
+  border-radius: 999px;
+  background-color: var(--bubble-in);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.statusBar {
+  flex: none;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: var(--sb-color);
+  background-color: var(--nav-bg);
+}
+
+.statusTime {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.statusRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}

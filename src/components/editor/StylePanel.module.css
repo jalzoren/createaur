@@ -1,0 +1,161 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 2px;
+}
+
+.segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  padding: 5px 12px;
+  border-radius: calc(var(--radius-md) - 2px);
+}
+
+.segment:hover {
+  color: var(--text-primary);
+}
+
+.segment[data-selected='true'] {
+  background-color: var(--bg-panel);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-1);
+}
+
+.chipGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+@media (min-width: 640px) {
+  .chipGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.chip:hover {
+  background-color: var(--bg-subtle);
+}
+
+.chip[aria-checked='true'] {
+  border-color: var(--accent);
+}
+
+.swatch {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+}
+
+.customRow {
+  margin-top: 4px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.fieldLabel {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+
+.dataActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dataActions [data-danger='true'] {
+  color: var(--danger);
+}
+
+.hiddenFile {
+  display: none;
+}
+
+.dateRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.dateCustom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.dateCustom input[type='text'] {
+  flex: 1;
+}
+
+.ghostDate {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 5px 8px;
+  width: 46px;
+}
+
+.ghostDate::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}

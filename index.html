@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/default-avatar.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="CreateAUR — create alternate-universe chat screenshots in your browser. iMessage, Messenger, X chats, X posts and Facebook post styles, pixel-perfect PNG export, no accounts." />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b" />
+    <title>CreateAUR</title>
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem('createaur:ui:v1')
+          var stored = null
+          try { stored = raw ? JSON.parse(raw) : null } catch (err) {}
+          var node = stored && stored.state ? stored.state : {}
+          var choice = node.editorTheme || 'system'
+          var dark = choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+        } catch (err) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+.root {
+  position: relative;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  padding: 0 21px 0 26px;
+  color: var(--sb-color);
+  font-family: var(--template-font);
+  background-color: var(--sb-bg, transparent);
+}
+
+.right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+  justify-content: flex-end;
+}
+
+.time {
+  position: absolute;
+  left: 0;
+  width: 132px;
+  text-align: left;
+  padding-left: 26px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.carrier {
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 2px;
+  letter-spacing: 0.01em;
+}
+
+.signal {
+  display: inline-flex;
+  margin-top: 1px;
+}
+
+.battery {
+  display: inline-flex;
+  margin-top: 0;
+}

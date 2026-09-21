@@ -1,0 +1,30 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+}
+
+.content {
+  position: fixed;
+  top: calc(var(--popover-top) * 1px);
+  left: calc(var(--popover-left) * 1px);
+  z-index: var(--z-popover);
+  min-width: 180px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-popover);
+  padding: 8px;
+  animation-duration: var(--duration-med);
+  animation-name: pop;
+  animation-timing-function: var(--ease-out);
+  transform-origin: top;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
